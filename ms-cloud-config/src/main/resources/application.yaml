@@ -1,0 +1,12 @@
+  spring:
+    application:
+      name: ms-cloud-config
+    cloud:
+     config:
+       server:
+          git:
+            uri: https://github.com/MehemmedSeydelili/config-repo.git
+            clone-on-start: true
+
+  server:
+    port: 8888
