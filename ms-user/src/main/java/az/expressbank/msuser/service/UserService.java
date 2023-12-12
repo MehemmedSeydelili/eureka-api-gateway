@@ -1,6 +1,6 @@
 package az.expressbank.msuser.service;
 
-import az.expressbank.msuser.client.AccountFeignClient;
+import az.expressbank.msuser.client.AccountClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final AccountFeignClient accountFeignClient;
+    private final AccountClient accountClient;
 
     public String getUserAccount(){
-        return accountFeignClient.getAccount();
+        return accountClient.getAccount();
     }
 }
