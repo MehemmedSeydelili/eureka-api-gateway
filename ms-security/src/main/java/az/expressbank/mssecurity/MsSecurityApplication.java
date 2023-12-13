@@ -1,16 +1,9 @@
 package az.expressbank.mssecurity;
 
-import az.expressbank.mssecurity.data.entity.Role;
-import az.expressbank.mssecurity.data.entity.User;
 import az.expressbank.mssecurity.data.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.util.Optional;
 
 @SpringBootApplication
 @RequiredArgsConstructor

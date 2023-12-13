@@ -1,44 +1,30 @@
-package az.expressbank.mssecurity.service.impl;
+package az.expressbank.mssecurity.service;
 
-import az.expressbank.mssecurity.data.dto.JwtAuthenticationResponse;
-import az.expressbank.mssecurity.data.dto.SignInRequest;
-import az.expressbank.mssecurity.data.dto.SignUpRequest;
-import az.expressbank.mssecurity.data.entity.Role;
-import az.expressbank.mssecurity.data.entity.User;
-import az.expressbank.mssecurity.data.repository.UserRepository;
-import az.expressbank.mssecurity.service.AuthenticationService;
-import az.expressbank.mssecurity.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class AuthenticationServiceImpl{
 
-    private final UserRepository userRepository;
+    /*private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
     @Override
-    public User signUp(SignUpRequest signUpRequest){
-        User user = new User();
+    public UserInfo signUp(SignUpRequest signUpRequest){
+        UserInfo userInfo = new UserInfo();
 
-        user.setEmail(signUpRequest.getEmail());
-        user.setName(signUpRequest.getFirstName());
-        user.setSecondName(signUpRequest.getLastName());
-        user.setRole(Role.USER);
-        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+        userInfo.setEmail(signUpRequest.getEmail());
+        userInfo.setName(signUpRequest.getFirstName());
+        userInfo.setSecondName(signUpRequest.getLastName());
+        userInfo.setRole(UserRole.USER);
+        userInfo.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
-        return userRepository.save(user);
+        return userRepository.save(userInfo);
     }
 
     @Override
@@ -68,6 +54,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         log.info("setter methods worked");
 
         return jwtAuthenticationResponse;
-    }
+    }*/
 }
 

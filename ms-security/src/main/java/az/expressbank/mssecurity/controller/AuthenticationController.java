@@ -1,14 +1,6 @@
 package az.expressbank.mssecurity.controller;
 
-import az.expressbank.mssecurity.data.dto.JwtAuthenticationResponse;
-import az.expressbank.mssecurity.data.dto.SignInRequest;
-import az.expressbank.mssecurity.data.dto.SignUpRequest;
-import az.expressbank.mssecurity.data.entity.User;
-import az.expressbank.mssecurity.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,16 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthenticationController {
 
-    private final AuthenticationService authenticationService;
+    /*private final AuthenticationService authenticationService;
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signUp(@RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<UserInfo> signUp(@RequestBody SignUpRequest signUpRequest){
         return ResponseEntity.ok(authenticationService.signUp(signUpRequest));
     }
 
     @PostMapping("/signin")
     public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SignInRequest signInRequest){
         return ResponseEntity.ok(authenticationService.signin(signInRequest));
-    }
+    }*/
 
 }
