@@ -30,7 +30,7 @@ public class MsSecurityApplication {
         if (admin.isEmpty()){
             User user = new User();
             user.setName("mahammad");
-            user.setSecondName("seydalili");
+            user.setSecondName("seydalili   ");
             user.setEmail("mm@gmail.com");
             user.setPassword(new BCryptPasswordEncoder().encode("mahammad1"));
             user.setRole(Role.ADMIN);

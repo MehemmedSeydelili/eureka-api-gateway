@@ -1,5 +1,7 @@
 package az.expressbank.mssecurity.controller;
 
+import az.expressbank.mssecurity.data.dto.JwtAuthenticationResponse;
+import az.expressbank.mssecurity.data.dto.SignInRequest;
 import az.expressbank.mssecurity.data.dto.SignUpRequest;
 import az.expressbank.mssecurity.data.entity.User;
 import az.expressbank.mssecurity.service.AuthenticationService;
@@ -20,6 +22,11 @@ public class AuthenticationController {
     @PostMapping("/signup")
     public ResponseEntity<User> signUp(@RequestBody SignUpRequest signUpRequest){
         return ResponseEntity.ok(authenticationService.signUp(signUpRequest));
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SignInRequest signInRequest){
+        return ResponseEntity.ok(authenticationService.signin(signInRequest));
     }
 
 }

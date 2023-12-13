@@ -14,7 +14,7 @@ spring:
           predicates:
             - Path=/api/user/**
             - Method=GET
-          uri: lb://ms-use
+          uri: lb://ms-user
 
 eureka:
   client:
