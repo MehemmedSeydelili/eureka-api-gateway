@@ -30,6 +30,7 @@ public class UserInfo{
     private String username;
     @JsonIgnore
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<UserRole> roles = new HashSet<>();
 }

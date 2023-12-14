@@ -36,14 +36,13 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http.csrf(AbstractHttpConfigurer::disable)
-                .exceptionHandling((exceptionHandling)-> exceptionHandling
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-                .authorizeHttpRequests(request-> request
-                    .requestMatchers("/api/v1/login").permitAll()
-                .requestMatchers("/api/v1/**")
-                .authenticated())
-                .sessionManagement(manager-> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
+                .formLogin(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/api/v1/login").permitAll()
+                        .requestMatchers("/swagger-ui.html/**").permitAll()
+                        .requestMatchers("/security-service/**").permitAll()
+                        .requestMatchers("/api/v1/**").authenticated())
+                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
 
