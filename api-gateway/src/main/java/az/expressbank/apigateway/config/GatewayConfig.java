@@ -16,12 +16,12 @@ public class GatewayConfig {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("user-service-route", r -> r.path("/ms-service/swagger-ui.html")
+                .route("user-service-route", r -> r.path("/MS-USER/v3/api-docs")
                         .uri("lb://MS-USER"))
 
                 .route("user-service-route", r -> r.path("/api/user/**")
                         .filters(f -> f.filter(filter))
-                        .uri("lb://MS-USER"))
+                        .uri("lb://ms-user"))
 
                 .route("account-service-route", r -> r.path("/api/account/**")
                         .filters(f -> f.filter(filter))
