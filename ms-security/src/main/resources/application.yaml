@@ -1,16 +1,9 @@
-server:
-  port: 8585
-
 spring:
-  datasource:
-    url: jdbc:oracle:thin:@192.168.0.212:1521:kit
-    username: test1
-    password: a12345A
-    driver-class-name: oracle.jdbc.OracleDriver
-    hikari:
-      schema: TEST1
-  jpa:
-    database-platform: org.hibernate.dialect.OracleDialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+  profiles:
+    active:
+      security
+  config:
+    import: "optional:configserver:"
+  cloud:
+    config:
+      uri: http://localhost:8888

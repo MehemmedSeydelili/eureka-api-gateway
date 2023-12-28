@@ -16,7 +16,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping
+    @GetMapping("/port")
     public String sayUser(){
         return "Port number: " + environment.getProperty("local.server.port");
     }
