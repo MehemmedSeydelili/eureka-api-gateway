@@ -36,7 +36,6 @@ public class AuthController {
         }
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/ping")
     public String test() {
         try {

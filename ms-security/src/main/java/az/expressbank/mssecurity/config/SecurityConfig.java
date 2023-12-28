@@ -38,10 +38,10 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/v1/login").permitAll()
-                        .requestMatchers("/swagger-ui.html/**").permitAll()
+                        .requestMatchers("/api/test/home","/auth/api/v1/login","/swagger-ui/**","/api/auth/signup").permitAll()
                         .requestMatchers("/security-service/**").permitAll()
-                        .requestMatchers("/api/v1/**").authenticated())
+                        .requestMatchers("/api/test/**").authenticated()
+                        .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
