@@ -39,5 +39,15 @@ public class MsSecurityApplication implements CommandLineRunner {
             user.setPassword(new BCryptPasswordEncoder().encode("mahammad"));
             user.setRoles(roles);
             userRepository.save(user);
+
+        UserRole userUser=new UserRole();
+        userRole.setName("USER");
+        Set<UserRole> userRolesUser = new HashSet<>();
+        roles.add(userUser);
+            UserInfo user1 = new UserInfo();
+            user1.setUsername("ilkin");
+            user1.setPassword(new BCryptPasswordEncoder().encode("ilkin"));
+            user1.setRoles(userRolesUser);
+            userRepository.save(user1);
     }
 }

@@ -60,15 +60,15 @@ public class JwtService {
 
 
 
-    public String GenerateToken(String username){
+    public String GenerateToken(String username, List<String> roles){
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, username);
+        return createToken(claims, username, roles);
     }
 
 
 
-    private String createToken(Map<String, Object> claims, String username) {
-
+    private String createToken(Map<String, Object> claims, String username, List<String> roles) {
+        claims.put("roles", roles);
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)

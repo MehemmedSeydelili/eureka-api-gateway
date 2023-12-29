@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/test/home","/auth/api/v1/login","/swagger-ui/**","/api/auth/signup").permitAll()
-                        .requestMatchers("/security-service/**").permitAll()
+                        .requestMatchers("/security-service/**","/auth/check/token","/auth/check/role", "/auth/get/claims").permitAll()
                         .requestMatchers("/api/test/**").authenticated()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

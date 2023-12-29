@@ -2,6 +2,9 @@ package az.expressbank.mssecurity.controller;
 
 import az.expressbank.mssecurity.data.dto.AuthRequestDTO;
 import az.expressbank.mssecurity.data.dto.JwtResponseDTO;
+import az.expressbank.mssecurity.data.entity.UserInfo;
+import az.expressbank.mssecurity.data.entity.UserRole;
+import az.expressbank.mssecurity.data.repository.UserRepository;
 import az.expressbank.mssecurity.service.AuthService;
 import az.expressbank.mssecurity.service.JwtService;
 import lombok.NonNull;
@@ -14,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/auth")
@@ -24,13 +28,22 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final AuthService authService;
+    private final UserRepository userRepository;
 
     @PostMapping("/api/v1/login")
-    public JwtResponseDTO AuthenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO){
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
-        if(authentication.isAuthenticated()){
+    public JwtResponseDTO AuthenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
+
+        if (authentication.isAuthenticated()) {
+            UserInfo user = userRepository.findByUsername(authRequestDTO.getUsername());
+            List<String> roles = user.getRoles().stream()
+                    .map(UserRole::getName)
+                    .collect(Collectors.toList());
+
             return JwtResponseDTO.builder()
-                    .accessToken(jwtService.GenerateToken(authRequestDTO.getUsername())).build();
+                    .accessToken(jwtService.GenerateToken(authRequestDTO.getUsername(), roles))
+                    .build();
         } else {
             throw new UsernameNotFoundException("invalid user request..!!");
         }

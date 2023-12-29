@@ -27,12 +27,7 @@ public class AuthService {
     private boolean isAuthorized(String token, String requestPath) {
         List<String> roles = jwtService.extractRoles(token);
 
-        if ("/payment/info".equals(requestPath) && roles.contains("ROLE_ADMIN")) {
-            return true;
-        } else if ("/payment/all/*".contains(requestPath) && (roles.contains("ROLE_ADMIN") || roles.contains("ROLE_USER"))) {
-            return true;
-        }
-        return false;
+        return "/api/account".contains(requestPath) && roles.contains("ADMIN");
     }
-
+//Problemin sebebi burdadir. Rollar JWT icerisine yazilmir deye burada extract ola bilmir
 }

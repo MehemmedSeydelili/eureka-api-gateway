@@ -23,12 +23,13 @@ public class GatewayConfig {
                         .filters(f -> f.filter(filter))
                         .uri("lb://ms-user"))
 
-                .route("account-service-route", r -> r.path("/api/account/**")
+                .route("account-service-route", r -> r.path("/MS-ACCOUNT/api/account")
                         .filters(f -> f.filter(filter))
-                        .uri("lb://ACCOUNT-SERVICE"))
+                        .uri("lb://ms-account"))
 
-                .route("account-service-route", r -> r.path("/api/account/**", "/swagger-ui.html")
-                        .uri("lb://ACCOUNT-SERVICE"))
+                .route("account-service-route", r -> r.path("/MS-ACCOUNT/v3/api-docs", "/swagger-ui.html")
+                        .uri("lb://MS-ACCOUNT"))
+
 
                 .route("security-service-route", r -> r.path("/auth/**", "/auth-service/v3/api-docs")
                         .uri("lb://SECURITY-SERVICE"))
